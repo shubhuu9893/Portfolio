@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        header {
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: transparent;
+            filter: drop-shadow(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #b74b4b;
+            border-bottom: 3px solid #b74b4b;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 5rem 9% 5rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills h2 {
+            font-size: 5rem;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .skills h2 span {
+            color: #b74b4b;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            width: 100%;
+        }
+
+        .skill-box {
+            position: relative;
+            width: 32rem;
+            background-color: #111;
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 0.2rem solid #b74b4b;
+            transition: 0.3s ease;
+        }
+
+        .skill-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        .skill-box h3 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #b74b4b;
+        }
+
+        .skill-box .skill-icon {
+            font-size: 4rem;
+            color: #b74b4b;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-bar {
+            height: 1rem;
+            background-color: #222;
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-per {
+            height: 100%;
+            background-color: #b74b4b;
+            border-radius: 2rem;
+            position: relative;
+            transition: width 2s ease;
+            width: 0;
+        }
+
+        .skill-per::before {
+            content: attr(per);
+            position: absolute;
+            right: 0;
+            top: -3rem;
+            transform: translateX(50%);
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .skill-text {
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+            text-align: justify;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background-color: black;
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: #b74b4b;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid #b74b4b;
+            transition: 0.3s ease;
+            cursor: pointer;
+            margin-top: 5rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            background-color: #b74b4b;
+            color: black;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        /* Mobile menu button */
+        .menu-btn {
+            display: none;
+            font-size: 2.5rem;
+            color: #b74b4b;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        @media (max-width: 995px) {
+            html {
+                font-size: 55%;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: #161616;
+                border-left: 3px solid #b74b4b;
+                padding: 8rem 3rem 3rem;
+                transition: 0.5s ease;
+                z-index: 100;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+
+            .skills-container {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 50%;
+            }
+
+            .skills h2 {
+                font-size: 4rem;
+            }
+
+            .skill-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"></a>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <a href="index.html" > Home</a>
+            <a href="skill.html" >Skills</a>
+            <a href="education.html" >Education</a>
+            <a href="contact.html" >Contact</a>
+        </nav>
+    </header>
+
+    <section class="skills">
+        <h2>My <span>Skills</span></h2>
+        
+        <div class="skills-container">
+            <div class="skill-box">
+                <div class="skill-icon">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <h3>HTML5</h3>
+                <div class="skill-bar">
+                    <div class="skill-per" per="95%"></div>
+                </div>
+                <p class="skill-text">Advanced knowledge of semantic HTML, accessibility best practices, and modern markup techniques for building robust web structures.</p>
+            </div>
+
+            <div class="skill-box">
+                <div class="skill-icon">
+                    <i class="fab fa-css3-alt"></i>
+                </div>
+                <h3>CSS3</h3>
+                <div class="skill-bar">
+                    <div class="skill-per" per="90%"></div>
+                </div>
+                <p class="skill-text">Expertise in responsive design, animations, transitions, and modern layout systems like Flexbox and Grid. Skilled with CSS preprocessors.</p>
+            </div>
+
+            <div class="skill-box">
+                <div class="skill-icon">
+                    <i class="fab fa-js"></i>
+                </div>
+                <h3>JavaScript</h3>
+                <div class="skill-bar">
+                    <div class="skill-per" per="70%"></div>
+                </div>
+                <p class="skill-text">Proficient with ES6+ features, asynchronous programming, DOM manipulation, and creating interactive web experiences.</p>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">
+                    <i class="fab fa-UI/UX"></i>
+                </div>
+                <h3>UI/UX Design </h3>
+                <div class="skill-bar">
+                    <div class="skill-per" per="70%"></div>
+                </div>
+                <p class="skill-text"> Completed multiple design projects using Canva, demonstrating proficiency in utilizing various elements such as text, shapes & icons. Skilled in customizing templates and applying design principles to produce visually compelling content.</p>
+            </div>
+    
+
+            <div class="skill-box">
+                <div class="skill-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>MySQL</h3>
+                <div class="skill-bar">
+                    <div class="skill-per" per="80%"></div>
+                </div>
+                <p class="skill-text">Strong understanding of relational database design, SQL queries, optimization techniques, and integration with web applications.</p>
+            </div>
+        </div>
+
+       
+    
+   
+    <a href="project.html" class="btn">View Projects</a>
+    </section>
+
+    <script>
+        window.addEventListener('load', () => {
+            const skillPers = document.querySelectorAll('.skill-per');
+            
+            skillPers.forEach(skillPer => {
+                const per = skillPer.getAttribute('per');
+                setTimeout(() => {
+                    skillPer.style.width = per;
+                }, 300);
+            });
+        });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const nav = document.querySelector('nav');
+            
+            menuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                menuBtn.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

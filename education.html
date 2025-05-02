@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        header {
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: transparent;
+            filter: drop-shadow(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #b74b4b;
+            border-bottom: 3px solid #b74b4b;
+        }
+
+        /* Mobile menu button */
+        .menu-btn {
+            display: none;
+            font-size: 2.5rem;
+            color: #b74b4b;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 5rem;
+        }
+
+        .education {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .education h2 {
+            font-size: 5rem;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .education h2 span {
+            color: #b74b4b;
+        }
+
+        .education-container {
+            width: 100%;
+            max-width: 100rem;
+            position: relative;
+        }
+
+        .education-container::after {
+            content: '';
+            position: absolute;
+            width: 0.6rem;
+            height: 100%;
+            background: #b74b4b;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 1rem;
+        }
+
+        .education-box {
+            width: 100%;
+            position: relative;
+            margin-bottom: 5rem;
+        }
+
+        .education-box:nth-child(odd) {
+            padding-right: calc(50% + 3rem);
+            text-align: right;
+        }
+
+        .education-box:nth-child(even) {
+            padding-left: calc(50% + 3rem);
+        }
+
+        .education-box::after {
+            content: '';
+            position: absolute;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: black;
+            border: 0.4rem solid #b74b4b;
+            border-radius: 50%;
+            top: 2rem;
+        }
+
+        .education-box:nth-child(odd)::after {
+            right: calc(50% - 1.3rem);
+        }
+
+        .education-box:nth-child(even)::after {
+            left: calc(50% - 1.3rem);
+        }
+
+        .education-content {
+            background-color: #111;
+            padding: 3rem;
+            border-radius: 2rem;
+            border: 0.2rem solid #b74b4b;
+            transition: 0.3s ease;
+        }
+
+        .education-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        .education-year {
+            font-size: 1.6rem;
+            color: #b74b4b;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .education-title {
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .education-school {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-desc {
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background-color: black;
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: #b74b4b;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid #b74b4b;
+            transition: 0.3s ease;
+            cursor: pointer;
+            margin-top: 5rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            background-color: #b74b4b;
+            color: black;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        @media (max-width: 995px) {
+            html {
+                font-size: 55%;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: #161616;
+                border-left: 3px solid #b74b4b;
+                padding: 8rem 3rem 3rem;
+                transition: 0.5s ease;
+                z-index: 100;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+            
+            .education-container::after {
+                left: 2rem;
+            }
+            
+            .education-box {
+                width: 100%;
+                padding-left: 5rem !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .education-box::after {
+                left: 0 !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 50%;
+            }
+
+            .education h2 {
+                font-size: 4rem;
+            }
+            
+            section {
+                padding: 10rem 5% 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"></a>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <a href="index.html" >Home</a>
+            <a href="skill.html" >Skills</a>
+            <a href="education.html" >Education</a>
+            <a href="contact.html" >Contact</a>
+        </nav>
+    </header>
+
+    <section class="education">
+        <h2>My <span>Education</span></h2>
+        
+            
+            <div class="education-container">
+
+                <div class="education-box">
+                    <div class="education-content">
+                        <div class="education-year">March 2022</div>
+                        <h3 class="education-title">SSC (10th Standard)</h3>
+                        <p class="education-school">S.S High School,Nesari</p>
+                        <p class="education-desc">Completed secondary school education with strong performance in mathematics and science.</p>
+                    </div>
+                </div>
+
+                <div class="education-box">
+                    <div class="education-content">
+                        <div class="education-year">2023 - 2025</div>
+                        <h3 class="education-title">Diploma in Information Technology</h3>
+                        <p class="education-school">Government Polytechnic, Kolhapur</p>
+                        <p class="education-desc">Currently pursuing a diploma with focus on IT fundamentals, programming, networking, and web technologies.</p>
+                    </div>
+                </div>
+        
+                
+        
+                <div class="education-box">
+                    <div class="education-content">
+            
+                        <h3 class="education-title">Infosys Certification</h3>
+                        <p class="education-school">Infosys Springboard</p>
+                        <p class="education-desc">Completed multiple online certification courses in programming, data structures, and soft skills offered by Infosys Springboard platform.</p>
+                        <a href="certificate.html" class="btn">View</a>  
+                    </div>
+                </div>
+                <div class="education-box">
+                    <div class="education-content">
+                        <h3 class="education-title">Achievements</h3>
+                        <p class="education-desc">Gained substantial experience through active participation in many events, enhancing my proficiency in various technologies</p>
+                        <a href="achievement.html" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+        
+            <a href="my resume1.pdf" class="btn">View Resume</a>
+        </section>
+        
+    <!-- Add JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const nav = document.querySelector('nav');
+            
+            menuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                menuBtn.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

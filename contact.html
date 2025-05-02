@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- EmailJS Script - Single proper initialization -->
+    
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        header {
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: transparent;
+            filter: drop-shadow(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #b74b4b;
+            border-bottom: 3px solid #b74b4b;
+        }
+
+        /* Mobile menu button */
+        .menu-btn {
+            display: none;
+            font-size: 2.5rem;
+            color: #b74b4b;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 5rem;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .contact h2 {
+            font-size: 5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .contact h2 span {
+            color: #b74b4b;
+        }
+
+        .contact-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            max-width: 50rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2.6rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            background-color: #111;
+            border: 0.2rem solid #b74b4b;
+            color: #b74b4b;
+            font-size: 2rem;
+            margin-right: 2rem;
+            transition: 0.3s ease;
+        }
+
+        .contact-detail:hover .icon {
+            background-color: #b74b4b;
+            color: black;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        .text {
+            font-size: 1.6rem;
+        }
+
+        .text h4 {
+            color: #b74b4b;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .text p, .text a {
+            color: #ddd;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .text a:hover {
+            color: #b74b4b;
+        }
+
+        .form-container {
+            flex: 1;
+            max-width: 50rem;
+            background-color: #111;
+            padding: 3rem;
+            border-radius: 1rem;
+            border-left: 0.3rem solid #b74b4b;
+        }
+
+        .form-container h3 {
+            font-size: 2.6rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .input-box input, 
+        .input-box textarea {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            font-size: 1.6rem;
+            background-color: #222;
+            color: white;
+            border-radius: 0.5rem;
+            transition: 0.3s ease;
+        }
+
+        .input-box textarea {
+            resize: none;
+            height: 15rem;
+        }
+
+        .input-box input:focus,
+        .input-box textarea:focus {
+            box-shadow: 0 0 10px rgba(183, 75, 75, 0.5);
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 2rem;
+            top: 1.5rem;
+            font-size: 1.6rem;
+            color: #999;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        .input-box input:focus ~ span,
+        .input-box input:valid ~ span,
+        .input-box textarea:focus ~ span,
+        .input-box textarea:valid ~ span {
+            color: #b74b4b;
+            font-size: 1.2rem;
+            transform: translateY(-2.5rem);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background-color: black;
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: #b74b4b;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid #b74b4b;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            background-color: #b74b4b;
+            color: black;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4.5rem;
+            height: 4.5rem;
+            background-color: transparent;
+            border: 0.2rem solid #b74b4b;
+            font-size: 2.2rem;
+            border-radius: 50%;
+            margin: 0 1.5rem;
+            transition: 0.3s ease;
+            color: #b74b4b;
+        }
+
+        .social-icons a:hover {
+            color: black;
+            transform: scale(1.2);
+            background-color: #b74b4b;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        /* Success message styles */
+        .message-status {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success {
+            background-color: rgba(0, 255, 0, 0.1);
+            color: #4BB543;
+            border: 1px solid #4BB543;
+        }
+
+        .error {
+            background-color: rgba(255, 0, 0, 0.1);
+            color: #FF6B6B;
+            border: 1px solid #FF6B6B;
+        }
+
+        @media (max-width: 995px) {
+            html {
+                font-size: 55%;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: #161616;
+                border-left: 3px solid #b74b4b;
+                padding: 8rem 3rem 3rem;
+                transition: 0.5s ease;
+                z-index: 100;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-info, .form-container {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 50%;
+            }
+
+            section {
+                padding: 10rem 5% 5rem;
+            }
+            
+            header {
+                padding: 1rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"></a>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="skill.html">Skills</a>
+            <a href="education.html">Education</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <section class="contact">
+        <h2>Contact <span>Me</span></h2>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                
+                <div class="contact-detail">
+                    <div class="icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="text">
+                        <h4>Location</h4>
+                        <p>A/P Kandewwadi ,Tal- Gadhinglaj ,Dist- Kolhapur</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="text">
+                        <h4>Email</h4>
+                        <a href="mailto:shubhamvadar2.0@gmail.com">shubhamvadar2.0@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="text">
+                        <h4>Phone</h4>
+                        <a href="tel:9607592398">+91 9607592398</a>
+                    </div>
+                </div>
+                
+                
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/shubham-vadar-a68371325/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/shubhuu9893" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/mr_shubhuu_9893/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h3>Send Message</h3>
+                <form id="contact-form">
+                    <div class="input-box">
+                      <input type="text" name="from_name" required>
+                      <span>Full Name</span>
+                    </div>
+                    <div class="input-box">
+                      <input type="email" name="from_email" required>
+                      <span>Email Address</span>
+                    </div>
+                    <div class="input-box">
+                      <input type="text" name="subject" required>
+                      <span>Subject</span>
+                    </div>
+                    <div class="input-box">
+                      <textarea name="message" required></textarea>
+                      <span>Your Message</span>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                  </form>
+                  <div id="message-status" class="message-status"></div>
+            </div>             
+        </div>
+    </section>
+    
+    
+   <!-- Include EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  (function() {
+    emailjs.init("db7hHnguHf2VC8pPS"); // Replace with your actual EmailJS user ID
+  })();
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const messageStatus = document.getElementById('message-status');
+    const menuBtn = document.querySelector('.menu-btn');
+    const nav = document.querySelector('nav');
+    
+    // Mobile menu toggle
+    menuBtn.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            nav.classList.remove('active');
+            menuBtn.classList.remove('active');
+        });
+    });
+  
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      // Validate form fields
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+  
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('error-field');
+        } else {
+          field.classList.remove('error-field');
+        }
+      });
+  
+      if (!isValid) {
+        messageStatus.textContent = 'Please fill in all required fields.';
+        messageStatus.className = 'message-status error';
+        messageStatus.style.display = 'block';
+        return;
+      }
+  
+      // Disable submit button and show loading state
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+  
+      // Send the email using EmailJS
+      emailjs.sendForm('service_1xmyvdi', 'template_mxvc4kc', form)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+  
+          // Show success message
+          messageStatus.textContent = 'Message sent successfully!';
+          messageStatus.className = 'message-status success';
+          messageStatus.style.display = 'block';
+  
+          // Reset form
+          form.reset();
+  
+          // Reset button state
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send Message';
+  
+          // Hide message after 5 seconds
+          setTimeout(function() {
+            messageStatus.style.display = 'none';
+          }, 5000);
+        }, function(error) {
+          console.error('EmailJS Error:', error);
+          messageStatus.textContent = 'Failed to send message: ' + (error.text || 'Unknown error');
+          messageStatus.className = 'message-status error';
+          messageStatus.style.display = 'block';
+  
+          // Reset button state
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send Message';
+        });
+    });
+  });
+</script>  
+</body>
+</html>

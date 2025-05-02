@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Achievements</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 9%;
+      background-color: transparent;
+      filter: drop-shadow(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 3rem;
+      color: #b74b4b;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.5s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+    }
+
+    nav a {
+      font-size: 1.8rem;
+      color: white;
+      margin-left: 4rem;
+      font-weight: 500;
+      transition: 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #b74b4b;
+      border-bottom: 3px solid #b74b4b;
+    }
+
+    /* Mobile menu button */
+    .menu-btn {
+      display: none;
+      font-size: 2.5rem;
+      color: #b74b4b;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    /* Main Content */
+    section {
+      min-height: 100vh;
+      padding: 10rem 9% 5rem;
+      width: 100%;
+    }
+
+    /* Page Title Styling */
+    .page-title {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .page-title .white-text {
+      color: #fff; /* White color for "My" */
+    }
+
+    .page-title .red-text {
+      color: #b74b4b; /* Red color for "Education" */
+    }
+
+    /* Grid Layout */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .achievement-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background-color: #1a1a1a;
+      box-shadow: 0 0 15px rgba(183, 75, 75, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .achievement-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px rgba(183, 75, 75, 0.5);
+    }
+
+    .achievement-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .achievement-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgba(183, 75, 75, 0.85);
+      color: #fff;
+      width: 100%;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .achievement-item:hover .overlay {
+      transform: translateY(0);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 995px) {
+      html {
+        font-size: 55%;
+      }
+      
+      .menu-btn {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: #161616;
+        border-left: 3px solid #b74b4b;
+        padding: 8rem 3rem 3rem;
+        transition: 0.5s ease;
+        z-index: 100;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 50%;
+      }
+      
+      header {
+        padding: 1rem 5%;
+      }
+      
+      section {
+        padding: 10rem 5% 5rem;
+      }
+    }
+
+    .achieve .page-title {
+      font-size: 5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <a href="#" class="logo"></a>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="skill.html">Skills</a>
+      <a href="education.html">Education</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="achieve">
+    <h1 class="page-title"><span class="white-text">My</span> <span class="red-text">Achievements</span></h1>
+    <div class="achievements-grid">
+      <div class="achievement-item">
+        <img src="achi1.jpg" alt="Achievement 1">
+        <div class="overlay">
+          <p>Certificate in Linux Workshop</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <img src="achi2.jpg" alt="Achievement 2">
+        <div class="overlay">
+          <p>Participate in Techathon</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <img src="achi3.jpg" alt="Achievement 4">
+        <div class="overlay">
+          <p>Participate in TNC</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <img src="achi5.jpg" alt="Achievement 5">
+        <div class="overlay">
+          <p>INNOVATE 2k23 (Dr.JJMCEJ)</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <img src="achi4.jpg" alt="Achievement 6">
+        <div class="overlay">
+          <p>RR SAT-2023</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.menu-btn');
+      const nav = document.querySelector('nav');
+      
+      menuBtn.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+      });
+      
+      // Close menu when clicking on a link
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          nav.classList.remove('active');
+          menuBtn.classList.remove('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
